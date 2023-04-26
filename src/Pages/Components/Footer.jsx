@@ -4,7 +4,8 @@ import Logo from '../../images/logo.png';
 export default function Footer() {
   return (
     <footer className="w-full bg-white px-8 py-6">
-      <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
+      <hr className="my-3 border-blue-gray-50" />
+      <div className="flex flex-row flex-wrap items-center justify-center gap-y-4 gap-x-12 bg-white text-center md:justify-between">
         <div className="flex items-center">
           <img src={Logo} alt="logo-ct" className="h-16 w-auto" />
           <Typography
@@ -49,7 +50,7 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      <hr className="my-3 border-blue-gray-50" />
+      {/* <hr className="my-3 border-blue-gray-50" /> */}
       <Typography color="blue-gray" className="text-center font-normal">
         &copy; 2023 iinaamasum
       </Typography>

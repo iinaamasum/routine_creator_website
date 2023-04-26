@@ -1,8 +1,13 @@
 import { Button, Typography } from '@material-tailwind/react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import bgImg from '../../images/bg_img.jpg';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/data-collection');
+  };
   return (
     <div
       style={{ backgroundImage: `url(${bgImg})` }}
@@ -16,7 +21,12 @@ const Home = () => {
           Streamline your workflow, boost productivity, and achieve success with
           better routine.
         </Typography>
-        <Button variant="gradient" color="blue" className="mt-5">
+        <Button
+          onClick={handleClick}
+          variant="gradient"
+          color="blue"
+          className="mt-5"
+        >
           Create Routine Now
         </Button>
       </div>

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Footer from './Pages/Components/Footer';
 import NavBar from './Pages/Components/NavBar';
 import Home from './Pages/Home/Home';
+import DataCollection from './Pages/Routine_Creator/DataCollection';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/data-collection" element={<DataCollection />} />
       </Routes>
       <Footer />
       <Toaster
@@ -21,7 +23,7 @@ function App() {
         toastOptions={{
           // Define default options
           className: '',
-          duration: 1000,
+          duration: 1500,
         }}
       />
     </>
