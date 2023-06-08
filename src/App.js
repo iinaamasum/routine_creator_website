@@ -4,6 +4,8 @@ import Footer from './Pages/Components/Footer';
 import NavBar from './Pages/Components/NavBar';
 import Home from './Pages/Home/Home';
 import DataCollection from './Pages/Routine_Creator/DataCollection';
+import Login from './Pages/auth/Login';
+import Register from './Pages/auth/Register';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/data-collection" element={<DataCollection />} />
       </Routes>
       <Footer />
