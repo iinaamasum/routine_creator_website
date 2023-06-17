@@ -43,11 +43,10 @@ export default function DataCollection() {
       assigned_sessional_full: 0,
       assigned_sessional_half: 0,
     };
-    // console.log(data);
-    navigate('/create-routine');
+    navigate('/routine');
   };
   return (
-    <div className="flex items-center justify-center min-h-[70vh]">
+    <div className="flex items-center justify-center min-h-[80vh] mb-5 md:mb-10">
       <Card color="transparent" shadow={false} className="my-2 md:my-4">
         <Typography variant="h4" color="blue-gray">
           Classes Information

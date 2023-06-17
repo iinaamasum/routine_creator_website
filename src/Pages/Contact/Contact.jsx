@@ -28,7 +28,6 @@ export default function Contact() {
       )
       .then(
         (result) => {
-          console.log(result.text);
           toast.success('Message Sent Successfully. Please Wait for Response.');
         },
         (error) => {

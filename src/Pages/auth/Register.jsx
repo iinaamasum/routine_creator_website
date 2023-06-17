@@ -44,7 +44,7 @@ const Register = () => {
   useEffect(() => {
     const currentUser = user || formUser || gUser;
     if (currentUser) {
-      navigate('/profile-info');
+      navigate('/');
       toast.success('Successfully Account Registered.');
     }
   }, [user, formUser, gUser, navigate]);
@@ -59,8 +59,8 @@ const Register = () => {
     return <LoadingComponent />;
   }
   return (
-    <>
-      <section className="flex justify-center mt-14 container px-4 md:px-0 mx-auto">
+    <div className="min-h-[80vh]">
+      <section className="flex justify-center mt-12 container px-4 md:px-0 mx-auto mb-5 md:mb-8">
         <Card
           style={{ boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px' }}
           className="w-full sm:w-[600px] mx-auto px-0 sm:px-10"
@@ -211,7 +211,7 @@ const Register = () => {
           </CardFooter>
         </Card>
       </section>
-    </>
+    </div>
   );
 };
 
