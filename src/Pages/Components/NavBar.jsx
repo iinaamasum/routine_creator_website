@@ -5,11 +5,18 @@ import {
   Navbar,
   Typography,
 } from '@material-tailwind/react';
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 import Logo from '../../images/logo.png';
+import LoadingComponent from './LoadingComponent';
 
 export default function NavBar() {
   const [openNav, setOpenNav] = React.useState(false);
+  const navigate = useNavigate();
+  const [user, userLoading] = useAuthState(auth);
 
   React.useEffect(() => {
     window.addEventListener(
@@ -17,6 +24,12 @@ export default function NavBar() {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
+
+  if (userLoading) {
+    return <LoadingComponent />;
+  }
+
+  console.log(user);
 
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -26,9 +39,9 @@ export default function NavBar() {
         color="blue-gray"
         className="p-1 font-normal text-[16px]"
       >
-        <a href="#" className="flex items-center">
+        <Link to="/creator" className="flex items-center">
           Create Routine
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -36,9 +49,9 @@ export default function NavBar() {
         color="blue-gray"
         className="p-1 font-normal text-[16px]"
       >
-        <a href="#" className="flex items-center">
+        <Link to="/about" className="flex items-center">
           About
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -46,9 +59,9 @@ export default function NavBar() {
         color="blue-gray"
         className="p-1 font-normal text-[16px]"
       >
-        <a href="#" className="flex items-center">
+        <Link to="/contact" className="flex items-center">
           Contact
-        </a>
+        </Link>
       </Typography>
     </ul>
   );
@@ -59,24 +72,41 @@ export default function NavBar() {
         <div className="flex items-center justify-between text-blue-gray-900">
           <div className="flex items-center">
             <img src={Logo} alt="logo-ct" className="h-12 w-auto" />
-            <Typography
-              as="a"
-              href="#"
-              className="mr-4 cursor-pointer py-1.5 font-medium md:text-[20px]"
+            <Link
+              to="/"
+              className="mr-4 cursor-pointer py-1.5 font-medium md:text-[20px] text-bold"
             >
               Routine Creator
-            </Typography>
+            </Link>
           </div>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
-            <Button
-              variant="filled"
-              color="blue"
-              size="md"
-              className="hidden lg:inline-block "
-            >
-              <span>LogIn</span>
-            </Button>
+            {user ? (
+              <>
+                <span className="text-sm text-green-500 text-bold">
+                  {user.email}
+                </span>
+                <Button
+                  onClick={() => signOut(auth)}
+                  variant="filled"
+                  color="blue"
+                  size="sm"
+                  className="hidden lg:inline-block "
+                >
+                  <span>Logout</span>
+                </Button>
+              </>
+            ) : (
+              <Button
+                onClick={() => navigate('/login')}
+                variant="filled"
+                color="blue"
+                size="sm"
+                className="hidden lg:inline-block "
+              >
+                <span>LogIn</span>
+              </Button>
+            )}
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -118,9 +148,27 @@ export default function NavBar() {
         </div>
         <MobileNav open={openNav}>
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>LogIn</span>
-          </Button>
+          {user ? (
+            <Button
+              onClick={() => signOut(auth)}
+              variant="filled"
+              color="blue"
+              size="md"
+              className="hidden lg:inline-block "
+            >
+              <span>Logout</span>
+            </Button>
+          ) : (
+            <Button
+              onClick={() => navigate('/login')}
+              variant="filled"
+              color="blue"
+              size="md"
+              className="hidden lg:inline-block "
+            >
+              <span>LogIn</span>
+            </Button>
+          )}
         </MobileNav>
       </Navbar>
     </>

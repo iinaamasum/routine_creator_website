@@ -8,10 +8,12 @@ import {
 } from '@material-tailwind/react';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function DataCollection() {
   const [series, setSeries] = useState('');
   const [section, setSection] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,8 +39,12 @@ export default function DataCollection() {
       theory: e.target.theory.value,
       sessional_full: e.target.sessional_full.value,
       sessional_half: e.target.sessional_half.value,
+      assigned_theory: 0,
+      assigned_sessional_full: 0,
+      assigned_sessional_half: 0,
     };
-    console.log(data);
+    // console.log(data);
+    navigate('/create-routine');
   };
   return (
     <div className="flex items-center justify-center min-h-[70vh]">

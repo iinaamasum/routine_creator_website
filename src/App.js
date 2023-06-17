@@ -2,6 +2,7 @@ import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import Footer from './Pages/Components/Footer';
 import NavBar from './Pages/Components/NavBar';
+import Contact from './Pages/Contact/Contact';
 import Home from './Pages/Home/Home';
 import DataCollection from './Pages/Routine_Creator/DataCollection';
 import Login from './Pages/auth/Login';
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/register" element={<Register />} />
         <Route path="/data-collection" element={<DataCollection />} />
       </Routes>
