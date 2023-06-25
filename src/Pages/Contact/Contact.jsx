@@ -38,7 +38,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full my-5">
+    <div className="flex items-center justify-center w-full py-5 min-h-screen bg-gray-50">
       <Card className="w-96 md:w-[500px] my-5">
         <form ref={form} onSubmit={sendEmail} className="text-black">
           <CardBody className="flex flex-col gap-4">

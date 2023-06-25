@@ -91,12 +91,6 @@ const RoutineSlotData = ({ slot }) => {
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                         <span
-                          onClick={deleteClass}
-                          className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
-                        >
-                          <HiTrash color="red" size={15} />
-                        </span>
-                        <span
                           onClick={handleOpen}
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                         >
@@ -150,12 +144,6 @@ const RoutineSlotData = ({ slot }) => {
                     {/* edit delete */}
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
-                        <span
-                          onClick={deleteClass}
-                          className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
-                        >
-                          <HiTrash color="red" size={15} />
-                        </span>
                         <span
                           onClick={handleOpen}
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
@@ -211,12 +199,6 @@ const RoutineSlotData = ({ slot }) => {
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                         <span
-                          onClick={deleteClass}
-                          className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
-                        >
-                          <HiTrash color="red" size={15} />
-                        </span>
-                        <span
                           onClick={handleOpen}
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                         >
@@ -250,10 +232,16 @@ const RoutineSlotData = ({ slot }) => {
                   {/* edit delete */}
                   <div className="invisible group-hover:visible">
                     <p className="flex items-center justify-center absolute right-0 top-[2px] ">
-                      <span className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer">
+                      <span
+                        onClick={deleteClass}
+                        className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
+                      >
                         <HiTrash color="red" size={15} />
                       </span>
-                      <span className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer">
+                      <span
+                        onClick={handleOpen}
+                        className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
+                      >
                         <TiEdit color="green" size={15} />
                       </span>
                     </p>
@@ -269,10 +257,10 @@ const RoutineSlotData = ({ slot }) => {
               {/* edit delete */}
               <div className="invisible group-hover:visible">
                 <p className="flex items-center justify-center absolute right-0 top-[2px] ">
-                  <span className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer">
-                    <HiTrash color="red" size={15} />
-                  </span>
-                  <span className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer">
+                  <span
+                    onClick={handleOpen}
+                    className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
+                  >
                     <TiEdit color="green" size={15} />
                   </span>
                 </p>

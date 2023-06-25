@@ -247,7 +247,7 @@ const Routine = () => {
   const wed = Routine.wed;
 
   return (
-    <div className="min-w-[900px] max-w-[1400px] flex items-center justify-center mx-auto m-4 md:my-5">
+    <div className="overflow-x-auto min-w-[900px] max-w-[1400px] flex items-center justify-center mx-auto m-4 md:my-5">
       <div className="w-full md:mx-10">
         <h1 className="text-center text-xl md:text-2xl my-1 text-blue-800 font-semibold">
           Class Routine of '{Routine.series}
