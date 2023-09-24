@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 export default function DataCollection() {
   const [series, setSeries] = useState('');
   const [section, setSection] = useState('');
+  const [semester, setSemester] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -25,25 +26,25 @@ export default function DataCollection() {
       toast.error('Please select section.');
       return;
     }
-    if (
-      e.target.theory.value === '' ||
-      e.target.sessional_full.value === '' ||
-      e.target.sessional_half.value === ''
-    ) {
+    if (semester === '') {
+      toast.error('Please select section.');
+      return;
+    }
+    if (e.target.theory.value === '' || e.target.sessional.value === '') {
       toast.error('Please enter all inputs.');
       return;
     }
     const data = {
       series,
       section,
+      semester,
       theory: e.target.theory.value,
-      sessional_full: e.target.sessional_full.value,
-      sessional_half: e.target.sessional_half.value,
+      sessional: e.target.sessional.value,
       assigned_theory: 0,
-      assigned_sessional_full: 0,
-      assigned_sessional_half: 0,
+      assigned_sessional: 0,
     };
-    navigate('/routine');
+    console.log(data);
+    navigate('/course-info');
   };
   return (
     <div className="flex items-center justify-center min-h-[80vh] mb-5 md:mb-10">
@@ -86,6 +87,25 @@ export default function DataCollection() {
               <Option value="Section B">Section B</Option>
               <Option value="Section C">Section C</Option>
             </Select>
+
+            <Select
+              value={semester}
+              onChange={(e) => {
+                setSemester(e);
+              }}
+              size="lg"
+              label="Select Semester"
+            >
+              <Option value="1-1">1-1</Option>
+              <Option value="1-2">1-2</Option>
+              <Option value="2-1">2-1</Option>
+              <Option value="2-2">2-2</Option>
+              <Option value="3-1">3-1</Option>
+              <Option value="3-2">3-2</Option>
+              <Option value="4-1">4-1</Option>
+              <Option value="4-2">4-2</Option>
+            </Select>
+
             <Input
               size="lg"
               label="No. of theory courses."
@@ -95,23 +115,11 @@ export default function DataCollection() {
             />
             <Input
               size="lg"
-              label="No. of sessional courses(1.5 Credits)"
+              label="No. of sessional courses"
               type="number"
-              name="sessional_full"
+              name="sessional"
               min="0"
             />
-            <Input
-              size="lg"
-              label="No. of sessional courses(0.75 Credits)"
-              type="number"
-              name="sessional_half"
-              min="0"
-            />
-            {/* <Input
-              type="number"
-              size="lg"
-              label="No. of sessional courses without classes."
-            /> */}
           </div>
           <Button
             type="submit"

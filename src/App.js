@@ -4,6 +4,7 @@ import Footer from './Pages/Components/Footer';
 import NavBar from './Pages/Components/NavBar';
 import Contact from './Pages/Contact/Contact';
 import Home from './Pages/Home/Home';
+import CourseInfo from './Pages/Routine_Creator/CourseInfo';
 import DataCollection from './Pages/Routine_Creator/DataCollection';
 import Routine from './Pages/Routine_Creator/Routine';
 import Login from './Pages/auth/Login';
@@ -19,6 +20,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/register" element={<Register />} />
         <Route path="/data-collection" element={<DataCollection />} />
+        <Route path="/course-info" element={<CourseInfo />} />
         <Route path="/routine" element={<Routine />} />
       </Routes>
       <Footer />
