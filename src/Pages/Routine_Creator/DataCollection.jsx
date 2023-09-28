@@ -11,14 +11,14 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 export default function DataCollection() {
-  const [series, setSeries] = useState('');
+  // const [user]
   const [section, setSection] = useState('');
   const [semester, setSemester] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (series === '') {
+    if (e.target.series.value === '') {
       toast.error('Please select a series.');
       return;
     }
@@ -30,18 +30,12 @@ export default function DataCollection() {
       toast.error('Please select section.');
       return;
     }
-    if (e.target.theory.value === '' || e.target.sessional.value === '') {
-      toast.error('Please enter all inputs.');
-      return;
-    }
+
     const data = {
-      series,
+      // email: user.email,
+      series: e.target.series.value,
       section,
       semester,
-      theory: e.target.theory.value,
-      sessional: e.target.sessional.value,
-      assigned_theory: 0,
-      assigned_sessional: 0,
     };
     console.log(data);
     navigate('/course-info');
@@ -61,20 +55,13 @@ export default function DataCollection() {
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         >
           <div className="mb-4 flex flex-col gap-6">
-            <Select
-              value={series}
-              onChange={(e) => {
-                setSeries(e);
-              }}
+            <Input
               size="lg"
-              label="Select Series"
-            >
-              <Option value="'17 Series">'17 Series</Option>
-              <Option value="'18 Series">'18 Series</Option>
-              <Option value="'19 Series">'19 Series</Option>
-              <Option value="'20 Series">'20 Series</Option>
-              <Option value="'21 Series">'21 Series</Option>
-            </Select>
+              label="Series (ex. 19 Series)"
+              type="text"
+              name="series"
+              min="0"
+            />
             <Select
               value={section}
               onChange={(e) => {
@@ -105,21 +92,6 @@ export default function DataCollection() {
               <Option value="4-1">4-1</Option>
               <Option value="4-2">4-2</Option>
             </Select>
-
-            <Input
-              size="lg"
-              label="No. of theory courses."
-              type="number"
-              name="theory"
-              min="0"
-            />
-            <Input
-              size="lg"
-              label="No. of sessional courses"
-              type="number"
-              name="sessional"
-              min="0"
-            />
           </div>
           <Button
             type="submit"

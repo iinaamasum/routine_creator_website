@@ -1,0 +1,213 @@
+ {
+   
+    course_id: '651296e5b0f6670bb5d27845',
+    user_email: 'iinaamasum@gmail.com',
+    series: '19 Series',
+    section: 'B Section',
+    sat: {
+      slot1: {
+        haveData: true,
+        isMul: true,
+        period1: {
+          have: true,
+          courseShortForm: 'CSE3101',
+          instructor1: 'Sen', 
+          instructor2: 'Ali',
+          roomNo: 202,
+         
+        },
+        period2: {
+          have: true,
+          courseShortForm: 'CSE3103',
+          instructor1: 'HsN',
+          roomNo: 202,
+         
+        },
+        period3: {
+          have: true,
+          courseShortForm: 'CSE3105',
+          instructor1: 'FP',
+          roomNo: 202,
+         
+        },
+       
+      },
+      slot2: {
+        haveData: false,
+        isMul: false,
+       
+      },
+      slot3: {
+        haveData: true,
+        isMul: false,
+        period1: {
+          have: true,
+          courseShortForm: 'CSE3102',
+          instructor1: 'Sen',
+          roomNo: 202,
+         
+        },
+       
+      },
+     
+    },
+    sun: {
+      slot1: {
+        haveData: true,
+        isMul: false,
+        period1: {
+          have: true,
+          courseShortForm: 'CSE3102',
+          instructor1: 'Ali',
+          roomNo: 202,
+         
+        },
+       
+      },
+      slot2: {
+        haveData: false,
+        isMul: false,
+       
+      },
+      slot3: {
+        haveData: false,
+        isMul: false,
+       
+      },
+     
+    },
+    mon: {
+      slot2: {
+        haveData: true,
+        isMul: true,
+        period1: {
+          have: true,
+          courseShortForm: 'CSE3101',
+          instructor1: 'Ali',
+          roomNo: 202,
+         
+        },
+        period2: {
+          have: true,
+          courseShortForm: 'CSE3103',
+          instructor1: 'HsN', 
+          instructor2: 'SA',
+          roomNo: 202,
+         
+        },
+        period3: {
+          have: true,
+          courseShortForm: 'CSE3105',
+          instructor1: 'FP',
+          roomNo: 202,
+         
+        },
+       
+      },
+      slot1: {
+        haveData: false,
+        isMul: false,
+       
+      },
+      slot3: {
+        haveData: true,
+        isMul: false,
+        period1: {
+          courseShortForm: 'CSE3102',
+          instructor1: 'Sen',
+          roomNo: 202,
+         
+        },
+       
+      },
+     
+    },
+    tues: {
+      slot1: {
+        haveData: true,
+        isMul: true,
+        period1: {
+          have: true,
+          courseShortForm: 'CSE3101',
+          instructor1: 'Sen',
+          roomNo: 202,
+         
+        },
+        period2: {
+          have: false,
+          courseShortForm: 'CSE3103',
+          instructor1: 'HsN',
+          roomNo: 202,
+         
+        },
+        period3: {
+          have: false,
+         
+        },
+       
+      },
+      slot2: {
+        haveData: false,
+        isMul: false,
+       
+      },
+      slot3: {
+        haveData: true,
+        isMul: false,
+        period1: {
+          have: true,
+          courseShortForm: 'CSE3102',
+          instructor1: 'Sen',
+          roomNo: 202,
+         
+        },
+       
+      },
+     
+    },
+    wed: {
+      slot1: {
+        haveData: true,
+        isMul: true,
+        period1: {
+          have: false,
+          courseShortForm: 'CSE3101',
+          instructor1: 'Ali',
+          roomNo: 202,
+         
+        },
+        period2: {
+          have: true,
+          courseShortForm: 'CSE3103',
+          instructor1: 'SA',
+          roomNo: 202,
+         
+        },
+        period3: {
+          have: true,
+          courseShortForm: 'CSE3105',
+          instructor1: 'FP',
+          roomNo: 202,
+         
+        },
+       
+      },
+      slot2: {
+        haveData: false,
+        isMul: false,
+       
+      },
+      slot3: {
+        haveData: true,
+        isMul: false,
+        period1: {
+          have: true,
+          courseShortForm: 'CSE3102',
+          instructor1: 'Sen',
+          roomNo: 202,
+        },
+       
+      },
+     
+    }
+  }

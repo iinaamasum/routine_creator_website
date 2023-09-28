@@ -7,27 +7,18 @@ import {
   Select,
 } from '@material-tailwind/react';
 import { useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm } from 'react-hook-form';
 import { MdCancel } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import auth from '../../firebase.init';
+import { useParams } from 'react-router-dom';
 
 const EditClassData = ({ open, handleOpen }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const navigate = useNavigate();
-  const [user] = useAuthState(auth);
-  const [newClassView, setNewClassView] = useState(false);
-
   const [selectPeriod, setSelectPeriod] = useState('');
   const [selectCategory, setSelectCategory] = useState('Theory');
   const [selectRoom, setSelectRoom] = useState('');
   const [selectRoomError, setSelectRoomError] = useState(false);
   const [selectPeriodError, setSelectPeriodError] = useState(false);
+
+  const { course_id } = useParams();
+  console.log(course_id);
 
   const allClass = {
     1695575501670: {
@@ -53,6 +44,8 @@ const EditClassData = ({ open, handleOpen }) => {
       instructor1: 'FP',
     },
   };
+
+  // useEffect
 
   const handleSelectedCourse = (c) => {
     if (selectRoom === '') {

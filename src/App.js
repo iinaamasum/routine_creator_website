@@ -5,10 +5,10 @@ import NavBar from './Pages/Components/NavBar';
 import Contact from './Pages/Contact/Contact';
 import Home from './Pages/Home/Home';
 import CourseInfo from './Pages/Routine_Creator/CourseInfo';
-import DataCollection from './Pages/Routine_Creator/DataCollection';
 import Routine from './Pages/Routine_Creator/Routine';
 import Login from './Pages/auth/Login';
 import Register from './Pages/auth/Register';
+import RequireAuth from './Pages/auth/RequireAuth';
 
 function App() {
   return (
@@ -19,9 +19,24 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/data-collection" element={<DataCollection />} />
-        <Route path="/course-info" element={<CourseInfo />} />
-        <Route path="/routine" element={<Routine />} />
+        <Route
+          path="/course-info"
+          element={
+            <RequireAuth>
+              <CourseInfo />
+            </RequireAuth>
+          }
+        />
+        <Route path="/routine">
+          <Route
+            path=":course_id"
+            element={
+              <RequireAuth>
+                <Routine />
+              </RequireAuth>
+            }
+          />
+        </Route>
       </Routes>
       <Footer />
       <Toaster

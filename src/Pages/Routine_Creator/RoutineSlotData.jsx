@@ -4,15 +4,17 @@ import { TiEdit } from 'react-icons/ti';
 import Swal from 'sweetalert2';
 import EditClassData from '../Modal/EditClassData';
 
-const RoutineSlotData = ({ slot }) => {
+const RoutineSlotData = ({ slot, Routine }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
 
+  // console.log(Routine);
+
   //   confirm deletion
-  const deleteClass = async (e) => {
-    e.preventDefault();
+  const deletePeriod = async () => {
+    // e.preventDefault();
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -22,7 +24,9 @@ const RoutineSlotData = ({ slot }) => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
     }).then(async (willDelete) => {
-      console.log(willDelete);
+      if (willDelete.isConfirmed) {
+        // const {data} = await axios.delete
+      }
       if (willDelete.isConfirmed === true) {
         Swal.fire({
           title: 'Deletion process completed.',
@@ -39,6 +43,8 @@ const RoutineSlotData = ({ slot }) => {
     });
   };
 
+  const handleSlot = (c) => {};
+
   return (
     <>
       <div className="w-full">
@@ -54,13 +60,13 @@ const RoutineSlotData = ({ slot }) => {
                       {slot.period1.courseShortForm}
                     </p>
                     <p className="p-0 m-0 leading-5">
-                      {slot.period1.Instructor.length > 1 ? (
+                      {slot.period1?.instructor2 ? (
                         <span>
-                          {slot.period1.Instructor[0]} /{' '}
-                          {slot.period1.Instructor[1]}{' '}
+                          {slot.period1.instructor1} /{' '}
+                          {slot.period1.instructor2}{' '}
                         </span>
                       ) : (
-                        <span>{slot.period1.Instructor[0]}</span>
+                        <span>{slot.period1.instructor1}</span>
                       )}
                       <p className="p-0 m-0 leading-5">
                         <span>{slot.period1.roomNo}</span>
@@ -70,7 +76,7 @@ const RoutineSlotData = ({ slot }) => {
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                         <span
-                          onClick={deleteClass}
+                          onClick={deletePeriod}
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                         >
                           <HiTrash color="red" size={15} />
@@ -108,13 +114,13 @@ const RoutineSlotData = ({ slot }) => {
                       {slot.period2.courseShortForm}
                     </p>
                     <p className="p-0 m-0 leading-5">
-                      {slot.period2.Instructor.length > 1 ? (
+                      {slot.period2?.instructor2 ? (
                         <span>
-                          {slot.period2.Instructor[0]} /{' '}
-                          {slot.period2.Instructor[1]}{' '}
+                          {slot.period2.instructor1} /{' '}
+                          {slot.period2.instructor2}{' '}
                         </span>
                       ) : (
-                        <span>{slot.period2.Instructor[0]}</span>
+                        <span>{slot.period2.instructor1}</span>
                       )}
                       <p className="p-0 m-0 leading-5">
                         <span>{slot.period2.roomNo}</span>
@@ -124,7 +130,7 @@ const RoutineSlotData = ({ slot }) => {
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                         <span
-                          onClick={deleteClass}
+                          onClick={deletePeriod}
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                         >
                           <HiTrash color="red" size={15} />
@@ -162,13 +168,13 @@ const RoutineSlotData = ({ slot }) => {
                       {slot.period3.courseShortForm}
                     </p>
                     <p className="p-0 m-0 leading-5">
-                      {slot.period3.Instructor.length > 1 ? (
+                      {slot.period3?.instructor2 ? (
                         <span>
-                          {slot.period3.Instructor[0]} /{' '}
-                          {slot.period3.Instructor[1]}{' '}
+                          {slot.period3.instructor1} /{' '}
+                          {slot.period3.instructor2}{' '}
                         </span>
                       ) : (
-                        <span>{slot.period3.Instructor[0]}</span>
+                        <span>{slot.period3.instructor1}</span>
                       )}
                       <p className="p-0 m-0 leading-5">
                         <span>{slot.period3.roomNo}</span>
@@ -178,7 +184,7 @@ const RoutineSlotData = ({ slot }) => {
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                         <span
-                          onClick={deleteClass}
+                          onClick={deletePeriod}
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                         >
                           <HiTrash color="red" size={15} />
@@ -217,13 +223,12 @@ const RoutineSlotData = ({ slot }) => {
                     {slot.period1.courseShortForm}
                   </p>
                   <p className="p-0 m-0 leading-5">
-                    {slot.period1.Instructor.length > 1 ? (
+                    {slot.period1?.instructor2 ? (
                       <span>
-                        {slot.period1.Instructor[0]} /{' '}
-                        {slot.period1.Instructor[1]}{' '}
+                        {slot.period1.instructor1} / {slot.period1.instructor2}{' '}
                       </span>
                     ) : (
-                      <span>{slot.period1.Instructor[0]}</span>
+                      <span>{slot.period1.instructor1}</span>
                     )}
                     <p className="p-0 m-0 leading-5">
                       <span>{slot.period1.roomNo}</span>
@@ -233,7 +238,7 @@ const RoutineSlotData = ({ slot }) => {
                   <div className="invisible group-hover:visible">
                     <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                       <span
-                        onClick={deleteClass}
+                        onClick={deletePeriod}
                         className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                       >
                         <HiTrash color="red" size={15} />
@@ -253,7 +258,7 @@ const RoutineSlotData = ({ slot }) => {
           </>
         ) : (
           <div className="grid grid-cols-1 h-full">
-            <div className="border-[2px]  border-blue-gray-400 group relative pt-6 pb-4">
+            <div className="border-[2px] h-24 border-blue-gray-400 group relative pt-6 pb-4">
               {/* edit delete */}
               <div className="invisible group-hover:visible">
                 <p className="flex items-center justify-center absolute right-0 top-[2px] ">

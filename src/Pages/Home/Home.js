@@ -6,7 +6,7 @@ import bgImg from '../../images/bg_img.jpg';
 const Home = () => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate('/data-collection');
+    navigate('/course-info');
   };
   return (
     <div
