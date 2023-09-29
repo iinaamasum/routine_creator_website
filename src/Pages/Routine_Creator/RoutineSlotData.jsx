@@ -1,20 +1,21 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { HiTrash } from 'react-icons/hi';
 import { TiEdit } from 'react-icons/ti';
 import Swal from 'sweetalert2';
 import EditClassData from '../Modal/EditClassData';
 
-const RoutineSlotData = ({ slot, Routine }) => {
+const RoutineSlotData = ({ slot, Routine, day, setRoutine }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  // console.log(Routine);
-
   //   confirm deletion
-  const deletePeriod = async () => {
-    // e.preventDefault();
+  const deletePeriod = async (e, isMul, period) => {
+    console.log(isMul, period);
+    e.preventDefault();
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -25,8 +26,40 @@ const RoutineSlotData = ({ slot, Routine }) => {
       confirmButtonText: 'Yes, delete it!',
     }).then(async (willDelete) => {
       if (willDelete.isConfirmed) {
-        // const {data} = await axios.delete
+        if (slot.isMul) {
+          slot[period] = {
+            have: false,
+            _id: slot[period]._id,
+          };
+        } else {
+          slot.haveData = false;
+          slot[period] = {
+            have: false,
+            _id: slot[period]._id,
+          };
+        }
+        let counter = 0;
+        if (slot.isMul) {
+          counter += slot['period1'].courseShortForm ? 1 : 0;
+          counter += slot['period1'].courseShortForm ? 1 : 0;
+          counter += slot['period1'].courseShortForm ? 1 : 0;
+        }
+
+        if (counter === 0) {
+          slot.isMul = false;
+        }
+
+        try {
+          const { data } = await axios.patch(
+            `http://localhost:5001/api/v1/routine/sub/${Routine._id}/${day._id}/${slot._id}`,
+            slot
+          );
+          setRoutine({ ...data.result });
+        } catch (error) {
+          toast.error("Can't get routine. Check network");
+        }
       }
+
       if (willDelete.isConfirmed === true) {
         Swal.fire({
           title: 'Deletion process completed.',
@@ -43,8 +76,6 @@ const RoutineSlotData = ({ slot, Routine }) => {
     });
   };
 
-  const handleSlot = (c) => {};
-
   return (
     <>
       <div className="w-full">
@@ -55,7 +86,7 @@ const RoutineSlotData = ({ slot, Routine }) => {
               <div className="grid grid-cols-3">
                 {/* have period or not */}
                 {slot.period1.have ? (
-                  <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4">
+                  <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4 h-24">
                     <p className="p-0 m-0 leading-5">
                       {slot.period1.courseShortForm}
                     </p>
@@ -69,14 +100,16 @@ const RoutineSlotData = ({ slot, Routine }) => {
                         <span>{slot.period1.instructor1}</span>
                       )}
                       <p className="p-0 m-0 leading-5">
-                        <span>{slot.period1.roomNo}</span>
+                        <span>{slot.period1.roomNumber}</span>
                       </p>
                     </p>
                     {/* edit delete */}
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                         <span
-                          onClick={deletePeriod}
+                          onClick={(e) =>
+                            deletePeriod(e, slot.isMul, 'period1')
+                          }
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                         >
                           <HiTrash color="red" size={15} />
@@ -92,7 +125,7 @@ const RoutineSlotData = ({ slot, Routine }) => {
                     {/* edit delete end  */}
                   </div>
                 ) : (
-                  <div className="border-[2px]  border-blue-gray-400 group relative pt-6 pb-4">
+                  <div className="border-[2px]  border-blue-gray-400 group relative pt-6 pb-4 h-24">
                     {/* edit delete */}
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
@@ -109,7 +142,7 @@ const RoutineSlotData = ({ slot, Routine }) => {
                 )}
 
                 {slot.period2.have ? (
-                  <div className="border-[2px]  border-blue-gray-400 group relative pt-6 pb-4">
+                  <div className="border-[2px]  border-blue-gray-400 group relative pt-6 pb-4 h-24">
                     <p className="p-0 m-0 leading-5">
                       {slot.period2.courseShortForm}
                     </p>
@@ -123,14 +156,16 @@ const RoutineSlotData = ({ slot, Routine }) => {
                         <span>{slot.period2.instructor1}</span>
                       )}
                       <p className="p-0 m-0 leading-5">
-                        <span>{slot.period2.roomNo}</span>
+                        <span>{slot.period2.roomNumber}</span>
                       </p>
                     </p>
                     {/* edit delete */}
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                         <span
-                          onClick={deletePeriod}
+                          onClick={(e) =>
+                            deletePeriod(e, slot.isMul, 'period2')
+                          }
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                         >
                           <HiTrash color="red" size={15} />
@@ -146,7 +181,7 @@ const RoutineSlotData = ({ slot, Routine }) => {
                     {/* edit delete end  */}
                   </div>
                 ) : (
-                  <div className="border-[2px]  border-blue-gray-400 group relative pt-6 pb-4">
+                  <div className="border-[2px]  border-blue-gray-400 group relative pt-6 pb-4 h-24">
                     {/* edit delete */}
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
@@ -163,7 +198,7 @@ const RoutineSlotData = ({ slot, Routine }) => {
                 )}
 
                 {slot.period3.have ? (
-                  <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4">
+                  <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4 h-24">
                     <p className="p-0 m-0 leading-5">
                       {slot.period3.courseShortForm}
                     </p>
@@ -177,14 +212,16 @@ const RoutineSlotData = ({ slot, Routine }) => {
                         <span>{slot.period3.instructor1}</span>
                       )}
                       <p className="p-0 m-0 leading-5">
-                        <span>{slot.period3.roomNo}</span>
+                        <span>{slot.period3.roomNumber}</span>
                       </p>
                     </p>
                     {/* edit delete */}
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                         <span
-                          onClick={deletePeriod}
+                          onClick={(e) =>
+                            deletePeriod(e, slot.isMul, 'period3')
+                          }
                           className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                         >
                           <HiTrash color="red" size={15} />
@@ -200,7 +237,7 @@ const RoutineSlotData = ({ slot, Routine }) => {
                     {/* edit delete end  */}
                   </div>
                 ) : (
-                  <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4">
+                  <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4 h-24">
                     {/* edit delete */}
                     <div className="invisible group-hover:visible">
                       <p className="flex items-center justify-center absolute right-0 top-[2px] ">
@@ -218,7 +255,7 @@ const RoutineSlotData = ({ slot, Routine }) => {
               </div>
             ) : (
               <>
-                <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4">
+                <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4 h-24">
                   <p className="p-0 m-0 leading-5">
                     {slot.period1.courseShortForm}
                   </p>
@@ -231,14 +268,14 @@ const RoutineSlotData = ({ slot, Routine }) => {
                       <span>{slot.period1.instructor1}</span>
                     )}
                     <p className="p-0 m-0 leading-5">
-                      <span>{slot.period1.roomNo}</span>
+                      <span>{slot.period1.roomNumber}</span>
                     </p>
                   </p>
                   {/* edit delete */}
                   <div className="invisible group-hover:visible">
                     <p className="flex items-center justify-center absolute right-0 top-[2px] ">
                       <span
-                        onClick={deletePeriod}
+                        onClick={(e) => deletePeriod(e, slot.isMul, 'period1')}
                         className="bg-gray-300 rounded-full p-[3px] mr-1 hover:cursor-pointer"
                       >
                         <HiTrash color="red" size={15} />
@@ -258,7 +295,7 @@ const RoutineSlotData = ({ slot, Routine }) => {
           </>
         ) : (
           <div className="grid grid-cols-1 h-full">
-            <div className="border-[2px] h-24 border-blue-gray-400 group relative pt-6 pb-4">
+            <div className="border-[2px] border-blue-gray-400 group relative pt-6 pb-4 h-24">
               {/* edit delete */}
               <div className="invisible group-hover:visible">
                 <p className="flex items-center justify-center absolute right-0 top-[2px] ">
@@ -278,7 +315,18 @@ const RoutineSlotData = ({ slot, Routine }) => {
         )}
       </div>
       {/* modal section  */}
-      <>{open && <EditClassData open={open} handleOpen={handleOpen} />}</>
+      <>
+        {open && (
+          <EditClassData
+            open={open}
+            handleOpen={handleOpen}
+            day={day}
+            slot={slot}
+            Routine={Routine}
+            setRoutine={setRoutine}
+          />
+        )}
+      </>
     </>
   );
 };

@@ -24,14 +24,6 @@ function CourseInfo() {
   const [user, loading, fireError] = useAuthState(auth);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const { course_id } = ID;
-  //   console.log('ID', ID);
-  //   if (ID.course_id !== '' && ID.routine_id !== '') {
-  //     console.log(course_id);
-  //     navigate(`/routine/${course_id}`, { state: ID });
-  //   }
-  // }, [ID.course_id, ID.routine_id, navigate]);
 
   if (loading) {
     return <LoadingComponent />;

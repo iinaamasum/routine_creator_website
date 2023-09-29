@@ -37,7 +37,6 @@ export default function DataCollection() {
       section,
       semester,
     };
-    console.log(data);
     navigate('/course-info');
   };
   return (

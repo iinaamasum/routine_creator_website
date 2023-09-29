@@ -6,65 +6,105 @@ import {
   Option,
   Select,
 } from '@material-tailwind/react';
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { MdCancel } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 
-const EditClassData = ({ open, handleOpen }) => {
+const EditClassData = ({
+  open,
+  handleOpen,
+  day,
+  slot,
+  Routine,
+  setRoutine,
+}) => {
   const [selectPeriod, setSelectPeriod] = useState('');
   const [selectCategory, setSelectCategory] = useState('Theory');
-  const [selectRoom, setSelectRoom] = useState('');
-  const [selectRoomError, setSelectRoomError] = useState(false);
+  const [roomNumber, setRoomNumber] = useState('');
+  const [roomNumberError, setRoomNumberError] = useState(false);
   const [selectPeriodError, setSelectPeriodError] = useState(false);
-
+  const [allClass, setAllClass] = useState({});
   const { course_id } = useParams();
-  console.log(course_id);
 
-  const allClass = {
-    1695575501670: {
-      course_short_form: 'CSE3100',
-      credit: '0.75',
-      instructor1: 'TJ',
-    },
-    1695575502566: {
-      course_short_form: 'CSE3101',
-      credit: '3',
-      instructor1: 'ALI',
-      instructor2: 'Sen',
-    },
-    1695575503093: {
-      course_short_form: 'CSE3102',
-      credit: '1.5',
-      instructor1: 'ALI',
-      instructor2: 'Sen',
-    },
-    1695575503698: {
-      course_short_form: 'CSE3105',
-      credit: '3',
-      instructor1: 'FP',
-    },
-  };
+  useEffect(() => {
+    if (!course_id) return;
+    async function getResults() {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5001/api/v1/class/${course_id}`
+        );
+        setAllClass({ ...data.result.courses });
+        console.log(data?.result.courses);
+      } catch (error) {
+        toast.error("Can't get routine. Check network");
+      }
+    }
+    getResults();
+  }, [course_id]);
 
-  // useEffect
+  console.log('AllClass', allClass);
+  if (Object.keys(allClass).length === 0) {
+    return;
+  }
 
-  const handleSelectedCourse = (c) => {
-    if (selectRoom === '') {
-      setSelectRoomError(true);
+  const handleSelectedCourse = async (c) => {
+    if (roomNumber === '') {
+      setRoomNumberError(true);
     }
     if (selectPeriod === '' && selectCategory === 'Theory') {
       setSelectPeriodError(true);
       console.log(selectPeriodError);
       return;
     }
-    if (selectRoom === '') {
+    if (roomNumber === '') {
       return;
     }
     const addedData = {
       ...c,
-      selectRoom,
+      roomNumber,
       selectCategory,
+      selectPeriod,
     };
-    console.log(addedData);
+    if (!slot.haveData) {
+      slot.haveData = true;
+    }
+
+    if (selectCategory === 'Theory') {
+      slot.isMul = true;
+      slot[selectPeriod] = {
+        ...slot[selectPeriod],
+        have: true,
+        courseShortForm: c.course_short_form,
+        instructor1: c.instructor1,
+        instructor2: c.instructor2,
+        credit: c.credit,
+        roomNumber: roomNumber,
+      };
+    } else {
+      slot.isMul = false;
+      slot['period1'] = {
+        ...slot[selectPeriod],
+        have: true,
+        courseShortForm: c.course_short_form,
+        instructor1: c.instructor1,
+        instructor2: c.instructor2,
+        credit: c.credit,
+        roomNumber: roomNumber,
+      };
+    }
+
+    try {
+      const { data } = await axios.patch(
+        `http://localhost:5001/api/v1/routine/sub/${Routine._id}/${day._id}/${slot._id}`,
+        slot
+      );
+      setRoutine({ ...data.result });
+      handleOpen(!open);
+    } catch (error) {
+      toast.error("Can't get routine. Check network");
+    }
   };
 
   return (
@@ -114,9 +154,9 @@ const EditClassData = ({ open, handleOpen }) => {
                 size="lg"
                 label="Select Period"
               >
-                <Option value="Period1">Period 1</Option>
-                <Option value="Period2">Period 2</Option>
-                <Option value="Period3">Period 3</Option>
+                <Option value="period1">Period 1</Option>
+                <Option value="period2">Period 2</Option>
+                <Option value="period3">Period 3</Option>
               </Select>
 
               {selectPeriodError && (
@@ -130,8 +170,8 @@ const EditClassData = ({ open, handleOpen }) => {
           <div className="w-[97%] md:w-[90%] mx-auto px-4 pt-2 pb-5">
             <Input
               onChange={(e) => {
-                setSelectRoom(e.target.value);
-                setSelectRoomError(false);
+                setRoomNumber(e.target.value);
+                setRoomNumberError(false);
               }}
               size="lg"
               label="Room Number"
@@ -139,7 +179,7 @@ const EditClassData = ({ open, handleOpen }) => {
               name="room_number"
               min="0"
             />
-            {selectRoomError && (
+            {roomNumberError && (
               <p className="text-red-500 font-semibold text-[12px] pt-1">
                 ❌ Room Number is not provided.
               </p>

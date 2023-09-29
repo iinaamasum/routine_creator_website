@@ -1,9 +1,11 @@
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
+import About from './Pages/About/About';
 import Footer from './Pages/Components/Footer';
 import NavBar from './Pages/Components/NavBar';
 import Contact from './Pages/Contact/Contact';
 import Home from './Pages/Home/Home';
+import ShowStat from './Pages/RoutineStat/ShowStat';
 import CourseInfo from './Pages/Routine_Creator/CourseInfo';
 import Routine from './Pages/Routine_Creator/Routine';
 import Login from './Pages/auth/Login';
@@ -19,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/course-info"
           element={
@@ -33,6 +36,16 @@ function App() {
             element={
               <RequireAuth>
                 <Routine />
+              </RequireAuth>
+            }
+          />
+        </Route>
+        <Route path="/stats">
+          <Route
+            path=":course_id"
+            element={
+              <RequireAuth>
+                <ShowStat />
               </RequireAuth>
             }
           />
