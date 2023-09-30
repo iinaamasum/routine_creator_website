@@ -37,7 +37,7 @@ export default function NavBar() {
         color="blue-gray"
         className="p-1 font-normal text-[16px]"
       >
-        <Link to="/creator" className="flex items-center">
+        <Link to="/course-info" className="flex items-center">
           Create Routine
         </Link>
       </Typography>

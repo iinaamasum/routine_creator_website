@@ -107,6 +107,12 @@ const EditClassData = ({
     }
   };
 
+  // let slotName;
+  // if (day.slot1._id.equals(slot._id)) slotName = 'slot1';
+  // if (day.slot2._id.equals(slot._id)) slotName = 'slot2';
+  // if (day.slot3._id.equals(slot._id)) slotName = 'slot3';
+  // console.log(slotName);
+
   return (
     <>
       <Dialog
@@ -154,6 +160,12 @@ const EditClassData = ({
                 size="lg"
                 label="Select Period"
               >
+                {/* <Option value="period1">08:00 am - 08:50 am</Option>
+                <Option value="period2">08:50 am - 09:40 am</Option>
+                <Option value="period3">Period 3</Option>
+                <Option value="period1">Period 1</Option>
+                <Option value="period2">Period 2</Option>
+                <Option value="period3">Period 3</Option> */}
                 <Option value="period1">Period 1</Option>
                 <Option value="period2">Period 2</Option>
                 <Option value="period3">Period 3</Option>

@@ -21,14 +21,24 @@ const Home = () => {
           Streamline your workflow, boost productivity, and achieve success with
           better routine.
         </Typography>
-        <Button
-          onClick={handleClick}
-          variant="gradient"
-          color="blue"
-          className="mt-5"
-        >
-          Create Routine Now
-        </Button>
+        <div className="flex items-center gap-x-3">
+          <Button
+            onClick={handleClick}
+            variant="gradient"
+            color="blue"
+            className="mt-5"
+          >
+            Create Routine Now
+          </Button>
+          <Button
+            onClick={() => navigate('/user-routine')}
+            variant="gradient"
+            color="green"
+            className="mt-5"
+          >
+            Edit Your Own Routine
+          </Button>
+        </div>
       </div>
     </div>
   );

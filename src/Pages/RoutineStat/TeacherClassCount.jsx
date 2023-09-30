@@ -26,7 +26,10 @@ function CheckIcon() {
 
 export function TeacherClassCount({ teacherCounts }) {
   return (
-    <Card variant="gradient" className="w-full md:w-96 p-8 bg-[#455a64]">
+    <Card
+      variant="gradient"
+      className="w-full md:w-96 p-8 bg-[#455a64] min-h-[50vh]"
+    >
       <CardHeader
         floated={false}
         shadow={false}
@@ -44,7 +47,7 @@ export function TeacherClassCount({ teacherCounts }) {
       <CardBody className="p-0 text-white">
         <ul className="flex flex-col gap-4">
           <li className="flex items-center justify-between px-8">
-            <p>Course Name</p>
+            <p>Teacher Name</p>
             <p>Class Count</p>
           </li>
           {Object.keys(teacherCounts).map((teacherShortForm) => (

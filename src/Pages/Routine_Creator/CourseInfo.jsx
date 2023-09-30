@@ -24,7 +24,6 @@ function CourseInfo() {
   const [user, loading, fireError] = useAuthState(auth);
   const navigate = useNavigate();
 
-
   if (loading) {
     return <LoadingComponent />;
   }
@@ -78,10 +77,11 @@ function CourseInfo() {
       const { _id: course_id } = data.result;
 
       const defaultRoutine = {
-        course: data.result._id,
+        course_id: course_id,
         user_email: user.email,
         series: data.result.series,
         section: data.result.section,
+        semester: data.result.semester,
         sat: {
           slot1: {
             haveData: false,
@@ -289,6 +289,7 @@ function CourseInfo() {
         },
       };
 
+      console.log(course_id);
       try {
         const { data: routineData } = await axios.post(
           'http://localhost:5001/api/v1/routine',

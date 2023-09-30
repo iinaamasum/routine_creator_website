@@ -26,7 +26,10 @@ function CheckIcon() {
 
 export function CourseCount({ courseCounts }) {
   return (
-    <Card variant="gradient" className="w-full md:w-96 p-8 bg-[#455a64]">
+    <Card
+      variant="gradient"
+      className="w-full md:w-96 p-8 bg-[#455a64] min-h-[50vh]"
+    >
       <CardHeader
         floated={false}
         shadow={false}

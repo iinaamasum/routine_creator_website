@@ -35,6 +35,7 @@ const Routine = () => {
     '04:10 pm - 05:00 pm',
   ];
 
+
   useEffect(() => {
     if (state.routine_id === '') return;
     async function getResults() {

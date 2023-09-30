@@ -1,3 +1,4 @@
+import { Button } from '@material-tailwind/react';
 import { AiFillGithub } from 'react-icons/ai';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 import { GrTwitter } from 'react-icons/gr';
@@ -6,8 +7,8 @@ import Typewriter from 'typewriter-effect';
 
 const About = () => {
   return (
-    <div className="lg:h-[95vh] container px-3 md:px-6 lg:px-8 flex justify-center items-center max-w-[1300px] mx-auto pb-10 mt-[20%] md:mt-[8%]">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <div className="lg:h-[95vh] container px-3 md:px-6 lg:px-8 flex justify-center items-center max-w-[1300px] mx-auto pb-10">
+      <div className="grid grid-cols-1 gap-10 items-center">
         <div className="">
           <h1 className="text-4xl md:text-4xl font-bold text-sky-600">
             Hello,
@@ -19,7 +20,7 @@ const About = () => {
             <Typewriter
               options={{
                 strings: [
-                  'Junior Web Developer.',
+                  'Web Developer.',
                   'Front-End Developer.',
                   'Back-End Developer.',
                   'Competitive Programmer',
@@ -45,11 +46,12 @@ const About = () => {
             <a
               target="_blank"
               href="https://drive.google.com/file/d/1N-wdH0WSxzJ27JE8TzgLusAVQZdI3y7b/view?usp=sharing"
-              className="btn btn-dark capitalize text-xl font-bold px-10 mr-4 inline-flex items-center text-gray-100"
               rel="noreferrer"
             >
-              <IoIosDocument />
-              Resume
+              <Button className="capitalize text-xl font-bold px-10 mr-4 inline-flex items-center">
+                <IoIosDocument />
+                Resume
+              </Button>
             </a>
             <div className="flex items-center">
               <a
