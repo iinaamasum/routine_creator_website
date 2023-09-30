@@ -176,6 +176,12 @@ const Login = () => {
                 Register Now
               </Link>
             </Typography>
+            <Typography variant="small" className="mt-1 flex justify-center">
+              Forgot the password?
+              <Link to="/resetPass" className="ml-1 font-bold text-blue-600">
+                Reset Password
+              </Link>
+            </Typography>
           </CardFooter>
         </Card>
       </section>

@@ -1,4 +1,5 @@
 import {
+  Button,
   Dialog,
   DialogBody,
   DialogHeader,
@@ -26,6 +27,7 @@ const EditClassData = ({
   const [roomNumberError, setRoomNumberError] = useState(false);
   const [selectPeriodError, setSelectPeriodError] = useState(false);
   const [allClass, setAllClass] = useState({});
+  const [labTheoryError, setLabTheoryError] = useState('');
   const { course_id } = useParams();
 
   useEffect(() => {
@@ -61,14 +63,23 @@ const EditClassData = ({
     if (roomNumber === '') {
       return;
     }
-    const addedData = {
-      ...c,
-      roomNumber,
-      selectCategory,
-      selectPeriod,
-    };
+
     if (!slot.haveData) {
       slot.haveData = true;
+    }
+    console.log(c.credit, 2);
+    if (selectCategory === 'Theory') {
+      if (c.credit !== 3) {
+        setLabTheoryError("Theory class can't be less than 3 credit");
+        toast.error("Theory class can't be less than 3 credit");
+        return;
+      }
+    } else if (selectCategory === 'Lab') {
+      if (c.credit > 1.5) {
+        setLabTheoryError("Lab class can't be greater than 1.5 credit");
+        toast.error("Lab class can't be greater than 1.5 credit");
+        return;
+      }
     }
 
     if (selectCategory === 'Theory') {
@@ -108,7 +119,7 @@ const EditClassData = ({
   };
 
   // let slotName;
-  // if (day.slot1._id.equals(slot._id)) slotName = 'slot1';
+  // if (day.slot1._id ===(slot._id)) slotName = 'slot1';
   // if (day.slot2._id.equals(slot._id)) slotName = 'slot2';
   // if (day.slot3._id.equals(slot._id)) slotName = 'slot3';
   // console.log(slotName);
@@ -160,12 +171,6 @@ const EditClassData = ({
                 size="lg"
                 label="Select Period"
               >
-                {/* <Option value="period1">08:00 am - 08:50 am</Option>
-                <Option value="period2">08:50 am - 09:40 am</Option>
-                <Option value="period3">Period 3</Option>
-                <Option value="period1">Period 1</Option>
-                <Option value="period2">Period 2</Option>
-                <Option value="period3">Period 3</Option> */}
                 <Option value="period1">Period 1</Option>
                 <Option value="period2">Period 2</Option>
                 <Option value="period3">Period 3</Option>
@@ -197,11 +202,21 @@ const EditClassData = ({
               </p>
             )}
           </div>
+
+          <div className="text-center mb-1">
+            {labTheoryError !== '' && (
+              <p className="text-red-500 font-semibold text-[12px] pt-1">
+                ❌ {labTheoryError}
+              </p>
+            )}
+          </div>
           <div className="grid grid-cols-3 gap-3 text-center w-[97%] md:w-[90%] mx-auto px-4 text-gray-800 -mb-3">
             {Object.values(allClass).map((c) => (
-              <div
+              <Button
+                size="md"
+                variant="text"
                 onClick={() => handleSelectedCourse(c)}
-                className="border-[2px] py-2 px-1 rounded-md border-blue-gray-400 hover:cursor-pointer hover:bg-blue-gray-200 hover:text-black transition-all duration-100"
+                className="items-center gap-2 border-[2px] py-2 px-1 rounded-md hover:text-gray-900 transition-all duration-100 capitalize text-gray-800 font-semibold"
               >
                 <p>{c.course_short_form}</p>
                 <p className="text-[13px]">Credit: {c.credit}</p>
@@ -214,8 +229,32 @@ const EditClassData = ({
                     <span>{c.instructor1}</span>
                   )}
                 </p>
-              </div>
+              </Button>
             ))}
+            <>
+              <Button
+                // onClick={}
+                size="sm"
+                variant="text"
+                className="flex items-center gap-2"
+              >
+                Add More Course
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-4 w-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </Button>
+            </>
           </div>
         </DialogBody>
       </Dialog>
