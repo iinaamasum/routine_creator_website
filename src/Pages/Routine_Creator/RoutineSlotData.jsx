@@ -40,10 +40,12 @@ const RoutineSlotData = ({ slot, Routine, day, setRoutine }) => {
         }
         let counter = 0;
         if (slot.isMul) {
-          counter += slot['period1'].courseShortForm ? 1 : 0;
-          counter += slot['period1'].courseShortForm ? 1 : 0;
-          counter += slot['period1'].courseShortForm ? 1 : 0;
+          counter += slot.period1.courseShortForm ? 1 : 0;
+          counter += slot.period2.courseShortForm ? 1 : 0;
+          counter += slot.period3.courseShortForm ? 1 : 0;
         }
+
+        console.log(counter, slot);
 
         if (counter === 0) {
           slot.isMul = false;
