@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Routine Creator - A simple and easy way to create or manage your routine
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- Live Site: [Click Here](https://autofin-32068.web.app/).\ -->
 
-## Available Scripts
+Back-end Link: [Click Here](https://github.com/iinaamasum/routine-creator_server)
 
-In the project directory, you can run:
+## About the Project
 
-### `yarn start`
+The "Routine Creator Website" presents a comprehensive system for efficient class scheduling and management. It includes user authentication, class information input, course details submission, and routine management with features like statistics, printing options, and course slot editing. Users can also edit existing routines and contact the developer for support. Technologies used include React.js, Node.js, Express.js, MongoDB, Mongoose, and Firebase Auth. The presentation concludes with a Q&A session and a heartfelt thank-you message.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features of the website
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Authentication:**
 
-### `yarn test`
+1. Login
+2. Registration with validation
+3. Reset Password (via email link)
+4. Email Verification
+5. Google Login System
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Home Page:**
 
-### `yarn build`
+- Banner with Navigation
+- Footer with Create and Edit Routine options
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Class Information:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Input for Series, Section, and Semester
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Course Information:**
 
-### `yarn eject`
+- Ability to input a variable number of courses with detailed course info
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Routine Management:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Statistics
+2. Print Option
+3. Maintainable Sub-Categories
+4. Add and Delete Course Slots
+5. Astonishing Modal for Adding Courses and Creating New Courses
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Edit Existing Routine:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Lists all routines created by the logged-in user
 
-## Learn More
+**Contact Information:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Users can send emails to the developer or routine creator with messages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**About Developer:**
 
-### Code Splitting
+- Developer's profile page with contact information
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Technologies Used:**
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React.js
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Firebase Auth

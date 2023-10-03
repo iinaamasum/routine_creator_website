@@ -116,9 +116,8 @@ const Register = () => {
                       message: '⚠ Password is required.',
                     },
                     pattern: {
-                      value: /(?=.*[!#$%&?^*@~() "])(?=.{8,})/,
-                      message:
-                        '⚠ Password length should be 8 including a special char',
+                      value: /^(?=.*\d).{8,}$/,
+                      message: '⚠ Password length should be 8',
                     },
                   })}
                 />

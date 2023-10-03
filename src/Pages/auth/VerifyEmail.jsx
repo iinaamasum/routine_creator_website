@@ -52,7 +52,10 @@ const VerifyEmail = () => {
         <h2 className="text-2xl font-semibold text-green-600 mt-5">
           If you already verified your email using other devices or other
           browser tab, please{' '}
-          <a className="text-blue-700 underline" href="http://localhost:3000">
+          <a
+            className="text-blue-700 underline"
+            href="http://localhost:3000/course-info"
+          >
             Click Here
           </a>
         </h2>

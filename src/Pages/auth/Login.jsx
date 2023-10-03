@@ -41,7 +41,7 @@ const Login = () => {
   useEffect(() => {
     const currentUser = formUser || gUser;
     if (currentUser) {
-      navigate('/');
+      navigate('/course-info');
       toast.success('Successfully Account Registered.');
     }
   }, [formUser, gUser, navigate]);
@@ -116,7 +116,7 @@ const Login = () => {
                       message: '⚠ Password is required.',
                     },
                     pattern: {
-                      value: /(?=.*[!#$%&?^*@~() "])(?=.{8,})/,
+                      value: /^(?=.*\d).{8,}$/,
                       message:
                         '⚠ Password length should be 8 including a special char',
                     },
